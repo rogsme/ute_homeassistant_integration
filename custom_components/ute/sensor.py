@@ -6,7 +6,6 @@ from ute_wrapper.ute import UTEClient
 from homeassistant import config_entries, core
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import CONF_EMAIL
-from .config_flow import CONF_PHONE_NUMBER, CONF_UTE_DEVICE_ID, CONF_UTE_AVERAGE_COST_PER_KWH
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.typing import (
     ConfigType,
@@ -15,7 +14,7 @@ from homeassistant.helpers.typing import (
 )
 
 from .const import DOMAIN
-from .config_flow import schema
+from .config_flow import schema, CONF_PHONE_NUMBER, CONF_UTE_DEVICE_ID, CONF_UTE_AVERAGE_COST_PER_KWH
 
 _LOGGER = logging.getLogger(__name__)
 # Time between updating data from UTE
