@@ -1,0 +1,11 @@
+{
+  "codeowners": ["@rogsme"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/rogsme/homeassistant_ute",
+  "domain": "ute",
+  "iot_class": "calculated",
+  "name": "UTE",
+  "requirements": ["ute-wrapper==1.0.3"],
+  "version": "1.0.0"
+}
