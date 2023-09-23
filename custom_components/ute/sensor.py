@@ -2,36 +2,26 @@ import logging
 from datetime import timedelta
 from typing import Callable, Optional
 
-from homeassistant import config_entries, core
-from homeassistant.components.sensor import PLATFORM_SCHEMA
-from homeassistant.const import CONF_EMAIL
+import homeassistant.helpers.config_validation as cv
+import voluptuous as vol
+from homeassistant.components.sensor import PLATFORM_SCHEMA, SensorDeviceClass
+from homeassistant.const import CONF_EMAIL, UnitOfPower
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType, HomeAssistantType
 from ute_wrapper.ute import UTEClient
-
-from .config_flow import CONF_PHONE_NUMBER, schema
-from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 # Time between updating data from UTE
 SCAN_INTERVAL = timedelta(minutes=2)
 
-PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(schema)
+CONF_PHONE_NUMBER = "phone_number"
 
-
-async def async_setup_entry(
-    hass: core.HomeAssistant,
-    config_entry: config_entries.ConfigEntry,
-    async_add_entities,
-):
-    """Setup sensors from a config entry created in the integrations UI."""
-    config = hass.data[DOMAIN][config_entry.entry_id]
-    ute = UTEClient(
-        config[CONF_EMAIL],
-        config[CONF_PHONE_NUMBER],
-    )
-    sensor = UTESensor(ute)
-    async_add_entities(sensor, update_before_add=True)
+PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
+    {
+        vol.Required(CONF_EMAIL): cv.string,
+        vol.Required(CONF_PHONE_NUMBER): cv.string,
+    }
+)
 
 
 def setup_platform(
@@ -41,16 +31,21 @@ def setup_platform(
     discovery_info: Optional[DiscoveryInfoType] = None,
 ) -> None:
     """Set up the sensor platform."""
-    ute = UTEClient(
-        config[CONF_EMAIL],
-        config[CONF_PHONE_NUMBER],
-    )
+    email = config[CONF_EMAIL]
+    phone_number = config[CONF_PHONE_NUMBER]
+
+    ute = UTEClient(email, phone_number)
     sensor = UTESensor(ute)
     async_add_entities(sensor, update_before_add=True)
 
 
 class UTESensor(Entity):
     """Representation of a UTE sensor."""
+
+    _attr_name = "UTE Uruguay Client"
+    _attr_icon = "lightning-bolt"
+    _attr_native_unit_of_measurement = UnitOfPower.WATT
+    _attr_device_class = SensorDeviceClass.ENERGY
 
     def __init__(self, ute: UTEClient):
         super().__init__()
@@ -59,6 +54,6 @@ class UTESensor(Entity):
         self._available = True
         self._name = "Current energy usage"
 
-    async def async_update(self):
+    def update(self):
         ute_data = await self.ute.get_current_usage_info()
         self._state = ute_data["data"]["power_in_watts"]

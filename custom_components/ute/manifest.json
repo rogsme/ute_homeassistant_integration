@@ -4,8 +4,8 @@
   "dependencies": [],
   "documentation": "https://github.com/rogsme/homeassistant_ute",
   "domain": "ute",
-  "iot_class": "calculated",
-  "name": "UTE",
+  "iot_class": "cloud_polling",
+  "name": "UTE Electricity",
   "requirements": ["ute-wrapper==1.0.3"],
   "version": "1.0.1"
 }
