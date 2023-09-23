@@ -1,11 +1,11 @@
-import re
 import logging
+import re
 from typing import Any, Dict, Optional
 
-from homeassistant import config_entries
-from homeassistant.const import CONF_EMAIL
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
+from homeassistant import config_entries
+from homeassistant.const import CONF_EMAIL
 
 from .const import DOMAIN
 
@@ -48,7 +48,7 @@ def validate_uyu_phone_number(phone_number: str) -> None:
     if not phone_number.startswith("598"):
         raise ValueError
 
-    if not re.match(r"^[0-9]{11}$", phone_number):
+    if not re.match(r"^[0-9]{11}$", phone_number):  # noqa: FS003
         raise ValueError
 
 
@@ -81,6 +81,4 @@ class UTEConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
                 return self.async_create_entry(title="UTE", data=self.data)
 
-        return self.async_show_form(
-            step_id="user", data_schema=AUTH_SCHEMA, errors=errors
-        )
+        return self.async_show_form(step_id="user", data_schema=AUTH_SCHEMA, errors=errors)

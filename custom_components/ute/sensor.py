@@ -1,20 +1,16 @@
-from datetime import timedelta
 import logging
+from datetime import timedelta
 from typing import Callable, Optional
 
-from ute_wrapper.ute import UTEClient
 from homeassistant import config_entries, core
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import CONF_EMAIL
 from homeassistant.helpers.entity import Entity
-from homeassistant.helpers.typing import (
-    ConfigType,
-    DiscoveryInfoType,
-    HomeAssistantType,
-)
+from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType, HomeAssistantType
+from ute_wrapper.ute import UTEClient
 
+from .config_flow import CONF_PHONE_NUMBER, schema
 from .const import DOMAIN
-from .config_flow import schema, CONF_PHONE_NUMBER
 
 _LOGGER = logging.getLogger(__name__)
 # Time between updating data from UTE
@@ -38,7 +34,7 @@ async def async_setup_entry(
     async_add_entities(sensor, update_before_add=True)
 
 
-async def async_setup_platform(
+def setup_platform(
     hass: HomeAssistantType,
     config: ConfigType,
     async_add_entities: Callable,
@@ -64,8 +60,5 @@ class UTESensor(Entity):
         self._name = "Current energy usage"
 
     async def async_update(self):
-        try:
-            ute_data = await self.ute.get_current_usage_info()
-            self._state = ute_data["data"]["power_in_watts"]
-        except ():
-            pass
+        ute_data = await self.ute.get_current_usage_info()
+        self._state = ute_data["data"]["power_in_watts"]
