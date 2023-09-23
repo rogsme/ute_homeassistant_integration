@@ -4,9 +4,8 @@ from typing import Callable, Optional
 
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
-from homeassistant.components.sensor import PLATFORM_SCHEMA, SensorDeviceClass
+from homeassistant.components.sensor import PLATFORM_SCHEMA, SensorDeviceClass, SensorEntity
 from homeassistant.const import CONF_EMAIL, UnitOfPower
-from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType, HomeAssistantType
 from ute_wrapper.ute import UTEClient
 
@@ -39,7 +38,7 @@ def setup_platform(
     async_add_entities(sensor, update_before_add=True)
 
 
-class UTESensor(Entity):
+class UTESensor(SensorEntity):
     """Representation of a UTE sensor."""
 
     _attr_name = "UTE Uruguay Client"
@@ -56,4 +55,4 @@ class UTESensor(Entity):
 
     def update(self):
         ute_data = await self.ute.get_current_usage_info()
-        self._state = ute_data["data"]["power_in_watts"]
+        self._attr_native_value = ute_data["data"]["power_in_watts"]
