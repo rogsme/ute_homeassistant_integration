@@ -82,7 +82,6 @@ class UTEConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             if not errors:
                 # Input is valid, set data.
                 self.data = user_input
-                return await self.async_step_repo()
 
         return self.async_show_form(
             step_id="user", data_schema=AUTH_SCHEMA, errors=errors
