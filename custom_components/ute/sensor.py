@@ -14,7 +14,7 @@ from homeassistant.helpers.typing import (
 )
 
 from .const import DOMAIN
-from .config_flow import schema, CONF_PHONE_NUMBER, CONF_UTE_DEVICE_ID, CONF_UTE_AVERAGE_COST_PER_KWH
+from .config_flow import schema, CONF_PHONE_NUMBER
 
 _LOGGER = logging.getLogger(__name__)
 # Time between updating data from UTE
@@ -33,8 +33,6 @@ async def async_setup_entry(
     ute = UTEClient(
         config[CONF_EMAIL],
         config[CONF_PHONE_NUMBER],
-        config[CONF_UTE_DEVICE_ID],
-        config[CONF_UTE_AVERAGE_COST_PER_KWH],
     )
     sensor = UTESensor(ute)
     async_add_entities(sensor, update_before_add=True)
@@ -50,8 +48,6 @@ async def async_setup_platform(
     ute = UTEClient(
         config[CONF_EMAIL],
         config[CONF_PHONE_NUMBER],
-        config[CONF_UTE_DEVICE_ID],
-        config[CONF_UTE_AVERAGE_COST_PER_KWH],
     )
     sensor = UTESensor(ute)
     async_add_entities(sensor, update_before_add=True)

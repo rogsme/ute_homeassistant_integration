@@ -12,14 +12,10 @@ from .const import DOMAIN
 _LOGGER = logging.getLogger(__name__)
 
 CONF_PHONE_NUMBER = "phone_number"
-CONF_UTE_DEVICE_ID = "ute_device_id"
-CONF_UTE_AVERAGE_COST_PER_KWH = "average_cost_per_kwh"
 
 schema = {
     vol.Required(CONF_EMAIL): cv.string,
     vol.Required(CONF_PHONE_NUMBER): cv.string,
-    vol.Optional(CONF_UTE_DEVICE_ID): cv.string,
-    vol.Optional(CONF_UTE_AVERAGE_COST_PER_KWH): cv.string,
 }
 
 AUTH_SCHEMA = vol.Schema(schema)
