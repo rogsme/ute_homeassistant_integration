@@ -34,8 +34,7 @@ def setup_platform(
     phone_number = config[CONF_PHONE_NUMBER]
 
     ute = UTEClient(email, phone_number)
-    sensor = UTESensor(ute)
-    async_add_entities(sensor, update_before_add=True)
+    async_add_entities([UTESensor(ute)], True)
 
 
 class UTESensor(SensorEntity):
