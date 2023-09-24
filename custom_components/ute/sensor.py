@@ -1,12 +1,13 @@
 import logging
 from datetime import timedelta
-from typing import Callable, Optional
 
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
 from homeassistant.components.sensor import PLATFORM_SCHEMA, SensorDeviceClass, SensorEntity
 from homeassistant.const import CONF_EMAIL, UnitOfPower
-from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType, HomeAssistantType
+from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 from ute_wrapper.ute import UTEClient
 
 _LOGGER = logging.getLogger(__name__)
@@ -24,17 +25,17 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
 
 
 def setup_platform(
-    hass: HomeAssistantType,
+    hass: HomeAssistant,
     config: ConfigType,
-    async_add_entities: Callable,
-    discovery_info: Optional[DiscoveryInfoType] = None,
+    add_entities: AddEntitiesCallback,
+    discovery_info: DiscoveryInfoType | None = None,
 ) -> None:
     """Set up the sensor platform."""
     email = config[CONF_EMAIL]
     phone_number = config[CONF_PHONE_NUMBER]
 
-    ute = UTEClient(email, phone_number)
-    async_add_entities([UTESensor(ute)], True)
+    client = UTEClient(email, phone_number)
+    add_entities([UTESensor(client)], True)
 
 
 class UTESensor(SensorEntity):
@@ -53,5 +54,5 @@ class UTESensor(SensorEntity):
         self._name = "Current energy usage"
 
     def update(self):
-        ute_data = await self.ute.get_current_usage_info()
+        ute_data = self.ute.get_current_usage_info()
         self._attr_native_value = ute_data["data"]["power_in_watts"]
