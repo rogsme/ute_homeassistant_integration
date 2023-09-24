@@ -34,21 +34,26 @@ def setup_platform(
     email = config[CONF_EMAIL]
     phone_number = config[CONF_PHONE_NUMBER]
 
-    client = UTEClient(email, phone_number)
+    try:
+        client = UTEClient(email, phone_number)
+    except Exception:
+        _LOGGER.error("Could not connect to UTE")
+        return
+
     add_entities([UTESensor(client)], True)
 
 
 class UTESensor(SensorEntity):
     """Representation of a UTE sensor."""
 
-    _attr_name = "UTE Uruguay Client"
+    _attr_name = "Current power usage"
     _attr_icon = "lightning-bolt"
     _attr_native_unit_of_measurement = UnitOfPower.WATT
     _attr_device_class = SensorDeviceClass.ENERGY
 
-    def __init__(self, ute: UTEClient):
+    def __init__(self, client: UTEClient):
         super().__init__()
-        self.ute = ute
+        self.client = client
         self._state = None
         self._available = True
         self._name = "Current energy usage"
