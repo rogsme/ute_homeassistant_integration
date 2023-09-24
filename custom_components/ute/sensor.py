@@ -49,13 +49,11 @@ class UTESensor(SensorEntity):
     _attr_name = "UTE Current power usage"
     _attr_icon = "lightning-bolt"
     _attr_native_unit_of_measurement = UnitOfPower.WATT
-    _attr_device_class = SensorDeviceClass.ENERGY
+    _attr_device_class = SensorDeviceClass.POWER
 
     def __init__(self, client: UTEClient):
         super().__init__()
         self.client = client
-        self._state = None
-        self._available = True
         self._name = "Current energy usage"
 
     def update(self):
