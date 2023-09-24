@@ -46,7 +46,7 @@ def setup_platform(
 class UTESensor(SensorEntity):
     """Representation of a UTE sensor."""
 
-    _attr_name = "Current power usage"
+    _attr_name = "UTE Current power usage"
     _attr_icon = "lightning-bolt"
     _attr_native_unit_of_measurement = UnitOfPower.WATT
     _attr_device_class = SensorDeviceClass.ENERGY
