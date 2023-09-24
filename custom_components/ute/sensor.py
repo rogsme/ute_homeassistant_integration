@@ -59,5 +59,5 @@ class UTESensor(SensorEntity):
         self._name = "Current energy usage"
 
     def update(self):
-        ute_data = self.ute.get_current_usage_info()
+        ute_data = self.client.get_current_usage_info()
         self._attr_native_value = ute_data["data"]["power_in_watts"]
