@@ -12,7 +12,7 @@ from ute_wrapper.ute import UTEClient
 
 _LOGGER = logging.getLogger(__name__)
 # Time between updating data from UTE
-SCAN_INTERVAL = timedelta(minutes=5)
+SCAN_INTERVAL = timedelta(minutes=10)
 
 CONF_PHONE_NUMBER = "phone_number"
 
