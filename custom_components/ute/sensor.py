@@ -15,11 +15,13 @@ _LOGGER = logging.getLogger(__name__)
 SCAN_INTERVAL = timedelta(minutes=3)
 
 CONF_PHONE_NUMBER = "phone_number"
+CONF_POWER_FACTOR = "power_factor"
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     {
         vol.Required(CONF_EMAIL): cv.string,
         vol.Required(CONF_PHONE_NUMBER): cv.string,
+        vol.Optional(CONF_POWER_FACTOR): cv.positive_float,
     }
 )
 
@@ -33,9 +35,13 @@ def setup_platform(
     """Set up the sensor platform."""
     email = config[CONF_EMAIL]
     phone_number = config[CONF_PHONE_NUMBER]
+    power_factor = None
+
+    if CONF_POWER_FACTOR in config:
+        power_factor = config[CONF_POWER_FACTOR]
 
     try:
-        client = UTEClient(email, phone_number)
+        client = UTEClient(email, phone_number, power_factor=power_factor)
     except Exception:
         _LOGGER.error("Could not connect to UTE")
         return
@@ -57,5 +63,17 @@ class UTESensor(SensorEntity):
         self._name = "Current energy usage"
 
     def update(self):
-        ute_data = self.client.get_current_usage_info()
-        self._attr_native_value = ute_data["data"]["power_in_watts"]
+        ute_data = self.client.get_current_usage_info()["data"]
+        self._attr_native_value = ute_data["power_in_watts"]
+        self._attr_extra_state_attributes["using_power_factor"] = ute_data["using_power_factor"]
+        self._attr_extra_state_attributes["last_query_date"] = ute_data["lastQueryDate"]
+        self._attr_extra_state_attributes["last_response_date"] = ute_data["lastResponseDate"]
+        self._attr_extra_state_attributes["energy_status"] = ute_data["statusText"]
+
+        readings = ute_data["readings"]
+
+        for reading in readings:
+            reading_type = reading["tipoLecturaMGMI"]
+            if reading_type != "RELAY_ON":
+                self._attr_extra_state_attributes[reading_type] = reading["valor"]
+                self._attr_extra_state_attributes["reading_date"] = reading["fechaHora"]

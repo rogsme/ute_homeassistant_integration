@@ -6,6 +6,6 @@
   "domain": "ute",
   "iot_class": "cloud_polling",
   "name": "UTE Electricity",
-  "requirements": ["ute-wrapper==1.0.3"],
-  "version": "1.0.1"
+  "requirements": ["ute-wrapper==1.1.0"],
+  "version": "1.1.0"
 }
