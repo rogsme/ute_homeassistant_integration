@@ -61,6 +61,7 @@ class UTESensor(SensorEntity):
         super().__init__()
         self.client = client
         self._name = "Current energy usage"
+        self._attr_extra_state_attributes = {}
 
     def update(self):
         ute_data = self.client.get_current_usage_info()["data"]
