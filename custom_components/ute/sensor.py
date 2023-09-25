@@ -67,6 +67,7 @@ class UTESensor(SensorEntity):
         ute_data = self.client.get_current_usage_info()["data"]
         self._attr_native_value = ute_data["power_in_watts"]
         self._attr_extra_state_attributes["using_power_factor"] = ute_data["using_power_factor"]
+        self._attr_extra_state_attributes["power_factor"] = self.client.power_factor
         self._attr_extra_state_attributes["last_query_date"] = ute_data["lastQueryDate"]
         self._attr_extra_state_attributes["last_response_date"] = ute_data["lastResponseDate"]
         self._attr_extra_state_attributes["energy_status"] = ute_data["statusText"]
