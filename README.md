@@ -2,6 +2,10 @@
 ![License](https://img.shields.io/github/license/rogsme/ute_homeassistant_integration)
 [![image](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=rogsme&repository=homeassistant_ute&category=integration)
 
+<p align="center">
+  <img src="https://github.com/rogsme/ute_homeassistant_integration/blob/master/icon.png?raw=true" alt="UTE"/>
+</p>
+
 # What is UTE?
 
 From Wikipedia
