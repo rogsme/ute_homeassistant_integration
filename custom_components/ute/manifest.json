@@ -7,5 +7,6 @@
   "iot_class": "cloud_polling",
   "name": "UTE Electricity",
   "requirements": ["ute-wrapper==1.1.0"],
-  "version": "1.1.0"
+  "version": "1.1.0",
+  "issue_tracker": "https://github.com/rogsme/homeassistant_ute/issues"
 }
