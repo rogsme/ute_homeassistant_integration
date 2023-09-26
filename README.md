@@ -1,5 +1,5 @@
-# UTE (Administración Nacional de Usinas y Trasmisiones Eléctricas) for Home Assistant
-![License](https://img.shields.io/github/license/rogsme/homeassistant_ute)
+# UTE (Administración Nacional de Usinas y Trasmisiones Eléctricas) for Home Assistant 🇺🇾
+![License](https://img.shields.io/github/license/rogsme/ute_homeassistant_integration)
 [![image](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=rogsme&repository=homeassistant_ute&category=integration)
 
 # What is UTE?
@@ -7,7 +7,7 @@
 From Wikipedia
 > The National Administration of Power Plants and Electrical Transmissions (Spanish: Administración Nacional de Usinas y Trasmisiones Eléctricas), better known as UTE, is Uruguay's government-owned power company. It was established in 1912, following approval of Law 4273 establishing it as a monopoly.
 
-This is an integration to get UTE power information in HomeAssistant
+This is an integration to get UTE power information in HomeAssistant.
 
 # Installation via HACS
 
@@ -15,9 +15,9 @@ Have [HACS](https://hacs.xyz/) installed, this will allow you to update easily.
 
 * Adding Proxmox VE to HACS can be using this button:
 
-[![image](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=rogsme&repository=homeassistant_ute&category=integration)
+[![image](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=rogsme&repository=ute_homeassistant_integration&category=integration)
 
-(If the button above doesn't work, add `https://github.com/rogsme/homeassistant_ute` as a custom repository of type Integration in HACS.)
+(If the button above doesn't work, add `https://github.com/rogsme/ute_homeassistant_integration` as a custom repository of type Integration in HACS.)
 * Click Install on the `UTE` integration.
 * Restart the Home Assistant.
 
@@ -42,7 +42,7 @@ And restart Home Assistant.
 
 # Contributing
 
-Contributions are welcome! If you find a bug or have a suggestion, please create an issue or submit Pull Request on [Github](https://github.com/rogsme/homeassistant_ute).
+Contributions are welcome! If you find a bug or have a suggestion, please create an issue or submit Pull Request on [Github](https://github.com/rogsme/ute_homeassistant_integration).
 
 # License
 
