@@ -42,7 +42,7 @@ And restart Home Assistant.
 
 # Contributing
 
-Contributions are welcome! If you find a bug or have a suggestion, please create an issue or submit Merge Request on [Gitlab](https://gitlab.com/rogs/ute).
+Contributions are welcome! If you find a bug or have a suggestion, please create an issue or submit Pull Request on [Github](https://github.com/rogsme/homeassistant_ute).
 
 # License
 

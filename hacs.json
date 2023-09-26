@@ -1,6 +1,5 @@
 {
   "name": "UTE Uruguay integration",
   "render_readme": true,
-  "iot_class": "calculated",
   "country": "UY"
 }
