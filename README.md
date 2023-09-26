@@ -18,7 +18,7 @@ This is an integration to get UTE power information in HomeAssistant.
 Have [HACS](https://hacs.xyz/) installed, this will allow you to update easily.
 
 * Add `https://github.com/rogsme/ute_homeassistant_integration` as a custom repository of type Integration in HACS.
-* Click Install on the `UTE` integration.
+* Click Install on the `UTE Uruguay` integration.
 * Restart the Home Assistant.
 
 ## Configuration

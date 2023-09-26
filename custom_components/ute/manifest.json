@@ -1,6 +1,6 @@
 {
   "domain": "ute",
-  "name": "UTE Electricity",
+  "name": "UTE Uruguay",
   "codeowners": ["@rogsme"],
   "config_flow": false,
   "dependencies": [],
