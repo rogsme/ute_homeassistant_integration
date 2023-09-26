@@ -1,6 +1,6 @@
 # UTE (Administración Nacional de Usinas y Trasmisiones Eléctricas) for Home Assistant 🇺🇾
 ![License](https://img.shields.io/github/license/rogsme/ute_homeassistant_integration)
-[![image](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=rogsme&repository=homeassistant_ute&category=integration)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/rogsme/ute_homeassistant_integration)
 
 <p align="center">
   <img src="https://github.com/rogsme/ute_homeassistant_integration/blob/master/icon.png?raw=true" alt="UTE"/>
@@ -17,11 +17,7 @@ This is an integration to get UTE power information in HomeAssistant.
 
 Have [HACS](https://hacs.xyz/) installed, this will allow you to update easily.
 
-* Adding Proxmox VE to HACS can be using this button:
-
-[![image](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=rogsme&repository=ute_homeassistant_integration&category=integration)
-
-(If the button above doesn't work, add `https://github.com/rogsme/ute_homeassistant_integration` as a custom repository of type Integration in HACS.)
+* Add `https://github.com/rogsme/ute_homeassistant_integration` as a custom repository of type Integration in HACS.
 * Click Install on the `UTE` integration.
 * Restart the Home Assistant.
 
