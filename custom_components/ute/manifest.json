@@ -7,6 +7,6 @@
   "documentation": "https://github.com/rogsme/homeassistant_ute",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/rogsme/homeassistant_ute/issues",
-  "requirements": ["ute-wrapper==1.1.0"],
+  "requirements": ["ute-wrapper==1.2.0"],
   "version": "1.1.0"
 }
