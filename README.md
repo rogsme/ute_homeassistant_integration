@@ -1,4 +1,11 @@
 # UTE (Administración Nacional de Usinas y Trasmisiones Eléctricas) for Home Assistant 🇺🇾
+
+# THIS PROJECT NO LONGER WORKS
+
+UTE has deprecated the API that this integration relied on. The only way to make it work again is to do another reverse engineering to the new UTE app.
+
+I already sent a PR to remove it from the HACS repos. When the PR is merged, I'll archive this repository.
+
 ![License](https://img.shields.io/github/license/rogsme/ute_homeassistant_integration)
 [![hacs_badge](https://img.shields.io/badge/HACS-Official-41BDF5.svg)](https://github.com/rogsme/ute_homeassistant_integration)
 
